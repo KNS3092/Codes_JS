@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area Calculator</title>
+  </head>
+
+  <body style="text-align: center">
+    <h1>Area Calculator</h1>
+
+    <input type="number" id="radius" placeholder="Enter radius of circle:">
+    <br>
+    <br>
+    <p id="circleArea"></p>
+    <input type="button" value="Calculate Circle Area" onclick="circlearea()">
+    <input type="button" value="Reset" onclick="reset('creset')">
+    <br>
+    <br>
+    <br>
+
+    <input type="number" id="length" placeholder="Enter length of rectangle:">
+    <br>
+    <br>
+    <input type="number" id="width" placeholder="Enter width of rectangle:">
+    <br>
+    <br>
+    <p id="rectangleArea"></p>
+    <input type="button" value="Calculate Rectangle Area" onclick="rectanglearea()">
+    <input type="button" value="Reset" onclick="reset('rreset')">
+    <br>
+    <br>
+
+    <input type="number" id="side1" placeholder="Enter first side of triangle:">
+    <br>
+    <br>
+    <input type="number" id="side2" placeholder="Enter second side of triangle:">
+    <br>
+    <br>
+    <input type="number" id="side3" placeholder="Enter third side of triangle:">
+    <br>
+    <br>
+    <p id="triangleArea"></p>
+    <input type="button" value="Calculate Triangle Area" onclick="trianglearea()">
+    <input type="button" value="Reset" onclick="reset('treset')">
+    <br>
+
+    <p id="errorMessage"></p>
+
+    <script>
+      function reset(shape)
+       {
+        if (shape == "creset") 
+        {
+          document.getElementById("radius").value = "";
+          document.getElementById("circleArea").innerText = " ";
+        } 
+        else if (shape == "rreset") 
+        {
+          document.getElementById("length").value = "";
+          document.getElementById("width").value = "";
+          document.getElementById("rectangleArea").innerText = " ";
+        } 
+        else shape == "treset";
+        {
+          document.getElementById("side1").value = "";
+          document.getElementById("side2").value = "";
+          document.getElementById("side3").value = "";
+          document.getElementById("triangleArea").innerText = " ";
+        }
+      }
+
+      // Function to calculate the area of a circle
+      function circlearea() {
+        const radius = parseFloat(document.getElementById("radius").value);
+
+        if (radius < 0)
+        {
+          alert("Radius cannot be negative.");
+          return;
+        }
+
+        const area = Math.PI * Math.pow(radius, 2);
+        document.getElementById("circleArea").innerText = `Area of Circle: ${area.toFixed(2)} sq. units`;
+        showError("");
+      }
+
+      // Function to calculate the area of a rectangle
+      function rectanglearea() 
+      {
+        const length = parseFloat(document.getElementById("length").value);
+        const width = parseFloat(document.getElementById("width").value);
+
+        if (length < 0 || width < 0)
+        {
+          alert("Length and width cannot be negative.");
+          return;
+        }
+
+        const area = length * width;
+        document.getElementById("rectangleArea").innerText = `Area of Rectangle: ${area.toFixed(2)} sq. units`;
+        showError("");
+      }
+
+      // Function to calculate the area of a triangle using Heron's formula
+      function trianglearea() 
+      {
+        const side1 = parseFloat(document.getElementById("side1").value);
+        const side2 = parseFloat(document.getElementById("side2").value);
+        const side3 = parseFloat(document.getElementById("side3").value);
+
+        if (side1 < 0 || side2 < 0 || side3 < 0)
+         {
+          alert("Sides of the triangle cannot be negative.");
+          return;
+        }
+
+        const semiPerimeter = (side1 + side2 + side3) / 2;
+        const area = Math.sqrt(semiPerimeter *(semiPerimeter - side1) *(semiPerimeter - side2) *(semiPerimeter - side3));
+        document.getElementById("triangleArea").innerText = `Area of Triangle: ${area.toFixed(2)} sq. units`;
+        showError("");
+      }
+    </script>
+  </body>
+</html>

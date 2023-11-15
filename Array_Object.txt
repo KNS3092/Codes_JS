@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles_7.css">
+    <title>Array Object</title>
+</head>
+<body>
+    <center>
+    <h1>Array Object</h1>
+    <input type="text" id="input" placeholder="Enter value to add to array">
+    <button onclick="addToArray()">Add to Array</button>
+    <br>
+    <br>
+
+    <input type="text" id="key" placeholder="Enter object key">
+    <input type="text" id="value" placeholder="Enter object value">
+    <button onclick="objectCreation()">Create pair</button>
+    <br>
+    <br>
+
+    <button onclick="objAddArray()">Add object to array</button>
+    <br>
+    <br>
+
+    
+    <input type="button" value="Click to display type of elements"onclick="checkType()"/>
+    <br>
+    <br>
+
+    <button onclick="resetFields()">Reset</button>
+
+    <p>Output Array: <span id="arrayResult"></span></p>
+    <p>Object content: <span id="containsResult"></span></p>
+    <p>Table of types: <span id="tresult"></span></p>
+
+    <script>
+        var inputArray = [];
+        var len;
+        var obj={};
+
+        function addToArray() 
+        {
+            var inputElement = document.getElementById("input").value;
+            inputArray.push(inputElement);
+            document.getElementById("arrayResult").innerHTML = inputArray;
+            document.getElementById("input").value="";
+        }
+
+        function objectCreation()
+        {
+            var okey=document.getElementById("key").value;
+            var ovalue=document.getElementById("value").value;
+            obj[okey]=ovalue;
+            var str="";
+            for(let i in obj)
+            {
+                str=str+" "+i+" "+obj[i];
+            }
+            document.getElementById("containsResult").innerHTML=str;
+
+        }
+
+        function objAddArray()
+        {
+            inputArray.push(obj);
+            document.getElementById("arrayResult").innerHTML = JSON.stringify(inputArray);
+        }
+
+        function checkType() 
+        {
+            let table = '<h2>Type of table</h2>';
+            table += '<table border="1">';
+            table += '<tr><th>Sr.No.</th><th>Element</th><th>Is it an Array?</th><th>Datatype of element</th></tr>';
+        
+            for (let i=0;i<inputArray.length;i++) 
+            {
+                table += `<tr><td>${i + 1}</td><td>${JSON.stringify(inputArray[i])}</td><td>${Array.isArray(inputArray[i])}</td><td>${typeof inputArray[i]}</td></tr>`;
+            }
+            table += '</table>';
+            document.getElementById('tresult').innerHTML = table;
+        }
+        
+
+        function resetFields()
+        {
+            document.getElementById("input").value = "";
+            document.getElementById("key").value = "";
+            document.getElementById("value").value = "";
+            document.getElementById("arrayResult").innerText = "";
+            document.getElementById("containsResult").innerText = "";
+            document.getElementById("tresult").innerText = "";
+            inputArray=[];
+        }
+
+
+    </script>
+</body>
+</html>

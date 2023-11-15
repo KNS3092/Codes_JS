@@ -1,0 +1,25 @@
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+function generateMultiplicationTable(number, start, finish) {
+  console.log('Multiplication Table Generator-42325')
+  console.log(`Multiplication table for ${number} from ${start} to ${finish}:`);
+  for (let i = start; i <= finish; i++) {
+    console.log(`${number} * ${i} = ${number * i}`);
+  }
+  rl.close();
+}
+
+rl.question("Enter a number for the multiplication table: ", (userInput) => {
+  const number = parseInt(userInput);
+  rl.question("Enter the start number for the table: ", (startInput) => {
+  rl.question("Enter the finish number for the table: ", (finishInput) => {
+  const start = parseInt(startInput);
+  const finish = parseInt(finishInput);
+  generateMultiplicationTable(number, start, finish);
+      });
+    });
+});

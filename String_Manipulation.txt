@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Manipulation</title>
+</head>
+<body style="text-align: center;">
+    <center>
+    <h2>String Manipulation</h2>
+    <input type="text" id="inputString" placeholder="Enter a string">
+    <br>
+    <br>
+    <button onclick="reverseStringIB()">Reverse String(IB)</button>
+    <div id="outputRIB"></div>
+    <br>
+    <br>
+    <button onclick="reverseStringUD()">Reverse String(UD)</button>
+    <div id="outputRUD"></div>
+    <br>
+    <br>
+    <button onclick="checkPalindromeIB()">Palindrome(IB)</button>
+    <div id="outputPIB"></div>
+    <br>
+    <br>
+    <button onclick="checkPalindromeUD()">Palindrome(UD)</button>
+    <div id="outputPUD"></div>
+    <br>
+    <br>
+    <input type="text" id="toReplace" placeholder="Charcters to replace">
+    <input type="text" id="withReplace" placeholder="Characters to replace with">
+    <br>
+    <br>
+    <button onclick="replaceCharactersIB()">Replace(IB)</button>
+    <div id="outputRCIB"></div>
+    <br>
+    <br>
+    <button onclick="replaceCharactersUD()">Replace(UD)</button>
+    <div id="outputRCUD"></div>
+    <br>
+    <br>
+    <button onclick="reset()">Reset</button>
+    <br>
+    <br>
+    
+    <script>
+
+        function reset() 
+        {
+            document.getElementById("inputString").value = "";
+            document.getElementById("outputRIB").innerHTML = "";
+            document.getElementById("outputPIB").innerHTML = "";
+            document.getElementById("outputRUD").innerHTML = "";
+            document.getElementById("outputPUD").innerHTML = "";
+            document.getElementById("toReplace").value = "";
+            document.getElementById("withReplace").value = "";
+            document.getElementById("outputRCIB").innerHTML = "";
+            document.getElementById("outputRCUD").innerHTML = "";
+        }
+
+        function reverseStringIB()
+        {
+            var input = document.getElementById("inputString").value;
+            var reversed = input.split('').reverse().join('');
+            document.getElementById("outputRIB").innerHTML = reversed;
+        }
+
+        function reverseStringUD()
+        {
+            var input = document.getElementById("inputString").value;
+            var reversed=""
+            for(var i=input.length-1;i>=0;i--)
+            {
+                reversed += input[i];
+            }
+            document.getElementById("outputRUD").innerHTML = reversed;
+        }
+
+        function checkPalindromeIB() 
+        {
+            var input = document.getElementById("inputString").value;
+            var reversed = input.split('').reverse().join('');
+            var isPalindrome = (input === reversed) ? "Entered string is a palindrome":"Entered string is not a palindrome";
+            document.getElementById("outputPIB").innerHTML = isPalindrome;
+        }
+
+        function checkPalindromeUD() 
+        {
+            var input = document.getElementById("inputString").value;
+            var reversed=""
+            for(var i=input.length-1;i>=0;i--)
+            {
+                reversed += input[i];
+            }
+            var isPalindrome = (input === reversed) ? "Entered string is a palindrome":"Entered string is not a palindrome";
+            document.getElementById("outputPUD").innerHTML = isPalindrome;
+            
+        }
+
+        function replaceCharactersIB()
+         {
+            var input = document.getElementById("inputString").value;
+            var toReplace = document.getElementById("toReplace").value;
+            var withReplace = document.getElementById("withReplace").value;
+            var replaced=input.replace(toReplace,withReplace);
+            document.getElementById("outputRCIB").innerHTML = replaced;
+        }
+
+        function replaceCharactersUD() 
+        {
+            var inputElement = document.getElementById("inputString");
+            var toReplaceElement = document.getElementById("toReplace");
+            var withReplaceElement = document.getElementById("withReplace");
+
+            var input = inputElement.value;
+            var toReplace = toReplaceElement.value;
+            var withReplace = withReplaceElement.value;
+
+            var replaced = "";
+            var currentIndex = 0;
+
+            while (currentIndex < input.length)
+             {
+                var foundIndex = input.indexOf(toReplace, currentIndex);
+
+                if (foundIndex === -1) 
+                {
+                    replaced += input.substring(currentIndex);
+                    break;
+                }
+                replaced += input.substring(currentIndex, foundIndex);
+                replaced += withReplace;
+                currentIndex = foundIndex + toReplace.length;
+            }
+            document.getElementById("outputRCUD").innerHTML = replaced;
+}
+    </script>
+</body>
+</html>

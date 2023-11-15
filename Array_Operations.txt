@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations</title>
+</head>
+<body>
+    <center>
+    <h1>Array Operations</h1>
+    <input type="text" id="inputArray" placeholder="Input Array(, separated)">
+
+    <button onclick="convertToArray()">Convert to Array</button>
+    <br>
+    <br>
+
+    <input type="text" id="removeElementIB" placeholder="Remove Element">
+    <button onclick="removeFromArrayIB()">Remove(In built)</button>
+    <br>
+    <br>
+
+    <input type="text" id="removeElementUD" placeholder="Remove Element">
+    <button onclick="removeFromArrayUD()">Remove(User defined)</button>
+    <br>
+    <br>
+
+    <input type="text" id="checkValueIB" placeholder="Element to check">
+    <button onclick="checkValueIB()">Check(In built)</button>
+    <br>
+    <br>
+
+    <input type="text" id="checkValueUD" placeholder="Element to check">
+    <button onclick="checkValueUD()">Check(User defined</button>
+    <br>
+    <br>
+
+    <p>Output Array: <span id="arrayResult"></span></p>
+    <p>Checked value: <span id="containsResult"></span></p>
+
+    <button onclick="emptyArrayIB()">Empty Array(In built)</button>
+    <br>
+    <br>
+
+    <button onclick="emptyArrayUD()">Empty Array(User defined)</button>
+    <br>
+    <br>
+
+    <button onclick="resetFields()">Reset</button>
+
+    
+    <script>
+        var inputArray = [];
+        var len;
+
+        function convertToArray() 
+        {
+            var inputElement = document.getElementById("inputArray").value;
+            len=inputElement.length;
+            inputArray = inputElement.split(",");
+            document.getElementById("arrayResult").innerHTML = inputArray.toString();
+            
+        }
+
+        function removeFromArrayIB()
+        {
+            var removeElement = document.getElementById("removeElementIB").value;
+            var indexofElement=inputArray.indexOf(removeElement);
+            if(indexofElement != -1)
+            inputArray.splice(indexofElement,1);
+            document.getElementById("arrayResult").innerHTML = inputArray;
+
+        }
+
+        function removeFromArrayUD()
+        {
+            var removeElement = document.getElementById("removeElementUD").value;
+            var i = 0;
+            var delRes;
+            while (i < len) 
+            {
+                if (inputArray[i] == removeElement) 
+                {
+                    inputArray.splice(i, 1);
+                    break;
+                }
+                i++;
+            }
+            document.getElementById("arrayResult").innerHTML = inputArray;
+           
+        }
+
+
+        function checkValueIB() 
+        {
+            const checkValue = document.getElementById("checkValueIB").value;
+            var i=inputArray.indexOf(checkValue);
+            if(inputArray.includes(checkValue)==1)
+            {
+                document.getElementById("containsResult").innerHTML = "Element Found at Index Position: "+ i;
+            }
+            else
+            {
+                document.getElementById("containsResult").innerHTML = "Element not found";
+            }
+            
+        }
+
+        function checkValueUD() 
+        {
+            var checkValue = document.getElementById("checkValueUD").value;
+            var i = 0;
+            var checkFlag;
+            var checkRes;
+            while (checkFlag != 1 && i < len) 
+            {
+                if (inputArray[i] == checkValue)
+                {
+                    checkFlag = 1;
+                }
+                else 
+                {
+                    checkFlag = 0;
+                }
+                i++;
+            }
+
+            if (checkFlag == 1) {
+                checkRes = "Element Found At Index Position " + (i - 1);
+            }
+            else 
+            {
+                checkRes = "Element Not Found";
+            }
+            document.getElementById("containsResult").innerHTML = checkRes;
+            
+        }
+
+        function emptyArrayIB()
+         {
+            inputArray.splice(0,len);
+            document.getElementById("arrayResult").innerHTML = inputArray;
+        }
+
+        function emptyArrayUD()
+         {
+            inputArray= [];
+            document.getElementById("arrayResult").innerText = inputArray.toString();
+        }
+
+        function resetFields()
+         {
+            document.getElementById("inputArray").value = "";
+            document.getElementById("removeElementIB").value = "";
+            document.getElementById("removeElementUD").value = "";
+            document.getElementById("checkValueIB").value = "";
+            document.getElementById("checkValueUD").value = "";
+            document.getElementById("arrayResult").innerText = "";
+            document.getElementById("containsResult").innerText = "";
+            inputArray = [];
+        }
+    </script>   
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+</head>
+<body style="text-align: center;">
+    <center> 
+  <h1>Multiplication Table Generator</h1>
+    <input type="number" id="number" placeholder="Enter a number:" required>
+    <br>
+    <br>
+    <input type="number" id="start" placeholder="Enter the start number:" required>
+    <br>
+    <br>
+    <input type="number" id="end" placeholder="Enter the end number:" required>
+    <br>
+    <br>
+    <input type="button" value="Generate Table"onclick="generateTable()"/>
+    <input type="button" value="Reset" onclick="reset()"/>
+  <div id="result"></div>
+
+  <script>
+    function generateTable() 
+    {
+      const number = parseInt(document.getElementById('number').value);
+      const start = parseInt(document.getElementById('start').value);
+      const end = parseInt(document.getElementById('end').value);
+
+      if (isNaN(number) || isNaN(start) || isNaN(end))
+      {
+        alert('Please enter valid numbers in all fields.');
+        return;
+      }
+
+      if (start > end)
+      {
+        alert('Start number should be less than or equal to the end number.');
+        return;
+      }
+
+      let table = `<h2>Multiplication Table for ${number} (from ${start} to ${end}):</h2>`;
+      table += '<table border="1">';
+      table += '<tr><th>Multiplicand</th><th>Multiplier</th><th>Result</th></tr>';
+
+      for (let i = start; i <= end; i++)
+      {
+        const result = number * i;
+        table += `<tr><td>${number}</td><td>${i}</td><td>${result}</td></tr>`;
+      }
+
+      table += '</table>';
+      document.getElementById('result').innerHTML = table;
+    }
+
+    function reset() 
+    {
+          document.getElementById('number').value = '';
+          document.getElementById('start').value = '';
+          document.getElementById('end').value = '';
+          document.getElementById('result').innerHTML = '';
+    } 
+  </script>
+  </center>
+</body>
+</html>
