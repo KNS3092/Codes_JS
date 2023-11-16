@@ -24,7 +24,7 @@
 <body>
     <div id="background" onmouseover="changeBackgroundColorOnMouseOver()" tabindex="0" onfocus="changeBackgroundColorOnFocus()">
         <h1>Changing background colour</h1>
-        <p>Click on button below to focus </p>
+        <p>Focus on area below to change colour </p>
     </div>
 
     <div id="button_container">
