@@ -1,25 +1,29 @@
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+const prompt = require('prompt-sync')({ sigint: true });
+var n = parseInt(prompt('Enter a number:'));
+var start = parseInt(prompt('Enter the start number:'));
+var end = parseInt(prompt('Enter the end number:'));
 
-function generateMultiplicationTable(number, start, finish) {
-  console.log('Multiplication Table Generator-42325')
-  console.log(`Multiplication table for ${number} from ${start} to ${finish}:`);
-  for (let i = start; i <= finish; i++) {
-    console.log(`${number} * ${i} = ${number * i}`);
-  }
-  rl.close();
+console.log("Using for loop");
+var out = "";
+for (var i = start; i <= end; i++) {
+    out = out + i + " * " + n + " = " + i * n + "\n";
 }
+console.log(out);
 
-rl.question("Enter a number for the multiplication table: ", (userInput) => {
-  const number = parseInt(userInput);
-  rl.question("Enter the start number for the table: ", (startInput) => {
-  rl.question("Enter the finish number for the table: ", (finishInput) => {
-  const start = parseInt(startInput);
-  const finish = parseInt(finishInput);
-  generateMultiplicationTable(number, start, finish);
-      });
-    });
-});
+console.log("Using while loop");
+var i = start;
+var out = "";
+while (i <= end) {
+    out = out + i + " * " + n + " = " + i * n + "\n";
+    i++;
+}
+console.log(out);
+
+console.log("Using do-while loop");
+var i = start;
+var out = "";
+do {
+    out = out + i + " * " + n + " = " + i * n + "\n";
+    i++;
+} while (i <= end);
+console.log(out);
